@@ -69,11 +69,17 @@ Kohana::modules(array(
 if ( ! Route::cache())
 {
 
-	Route::set('default', '(<controller>(/<action>(/<id>)))')
+	Route::set('cron', 'cron/injest')
 		->defaults(array(
-			'controller' => 'welcome',
-			'action'     => 'index',
+			'controller' => 'cron',
+			'action'     => 'injest',
 		));
+
+	// Route::set('default', '(<controller>(/<action>(/<id>)))')
+	// 	->defaults(array(
+	// 		'controller' => 'welcome',
+	// 		'action'     => 'index',
+	// 	));
 	// Save the routes to cache
 	Route::cache(TRUE);
 }
