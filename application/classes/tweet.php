@@ -6,7 +6,7 @@ class tweet {
 	
 	public static function create ($raw_object) {
 		$db = mongoconnection::instance();
-		$db->tweets->insert(json_encode($raw_object));
+		$db->tweets->insert($raw_object);
 	}
 	
 	public function __construct ($doc_id, $data = null) {

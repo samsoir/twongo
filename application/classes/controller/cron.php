@@ -21,6 +21,8 @@ class Controller_Cron extends Controller {
 			$tweets = Request::factory(Controller_Cron::$twitter_endpoint)
 				->execute();
 
+			$i = 0;
+
 			if ($tweets->status === 200)
 			{
 				$tweets = json_decode($tweets->body);
@@ -28,13 +30,16 @@ class Controller_Cron extends Controller {
 				foreach ($tweets->results as $tweet)
 				{
 					tweet::create($tweet);
+					$i++;
 				}
-			}
 
+			}
+			echo 'Completed successfully, inserted '.$i,' records';
 		}
-		catch (Request_Exception $e)
+		catch (Kohana_Request_Exception $e)
 		{
 			// Die gracefully
+			'Yo, twitter is so not working!';
 		}
 		catch (Exception $e)
 		{
