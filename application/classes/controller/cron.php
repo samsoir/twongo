@@ -23,10 +23,14 @@ class Controller_Cron extends Controller {
 
 			if ($tweets->status === 200)
 			{
-				tweet::create($tweets->body);
+				$tweets = json_decode($tweets->body);
+
+				foreach ($tweets->results as $tweet)
+				{
+					tweet::create($tweet);
+				}
 			}
 
-			var_dump($tweets);
 		}
 		catch (Request_Exception $e)
 		{
