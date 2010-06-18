@@ -1,8 +1,8 @@
 <ul>
 	<?php
 	foreach ($tweets as $tweet) {
-	
-		print '<li>' . $tweet->body . '</li>';
+//		var_dump($tweet);
+		print '<li>' . $tweet['text'] . '</li>';
 		
 	}
 	?>

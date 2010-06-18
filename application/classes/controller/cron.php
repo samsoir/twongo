@@ -2,7 +2,7 @@
 //http://search.twitter.com/search.json?lang=en&phrase=%23mongouk
 class Controller_Cron extends Controller {
 
-	public static $twitter_endpoint = 'http://search.twitter.com/search.json?lang=en&phrase=%23mongouk&since_id=%d';
+	public static $twitter_endpoint = 'http://search.twitter.com/search.json?lang=en&phrase=%%23mongouk&since_id=%d&rpp=100';
 
 	public function __construct(Kohana_Request $request)
 	{
@@ -18,7 +18,7 @@ class Controller_Cron extends Controller {
 	{
 		try
 		{
-			$tweets = Request::factory(sprintf(Controller_Cron::$twitter_endpoint, tweet::last_id())
+			$tweets = Request::factory(sprintf(Controller_Cron::$twitter_endpoint, tweet::last_id()))
 				->execute();
 
 			$i = 0;

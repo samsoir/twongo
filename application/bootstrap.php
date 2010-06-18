@@ -66,8 +66,8 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
-if ( ! Route::cache())
-{
+// if ( ! Route::cache())
+// {
 
 	Route::set('cron', 'cron/injest')
 		->defaults(array(
@@ -75,14 +75,16 @@ if ( ! Route::cache())
 			'action'     => 'injest',
 		));
 
-	// Route::set('default', '(<controller>(/<action>(/<id>)))')
-	// 	->defaults(array(
-	// 		'controller' => 'welcome',
-	// 		'action'     => 'index',
-	// 	));
+
+	Route::set('default', '(<controller>(/<action>(/<id>)))')
+		->defaults(array(
+			'controller' => 'front',
+			'action'     => 'index',
+		));
+
 	// Save the routes to cache
 	Route::cache(TRUE);
-}
+// }
 
 /**
  * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
