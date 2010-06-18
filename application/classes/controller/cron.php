@@ -16,12 +16,25 @@ class Controller_Cron extends Controller {
 
 	public function action_injest()
 	{
-		$tweets = Request::factory(Controller_Cron::$twitter_endpoint)
-			->execute();
-		var_dump(json_decode($tweets->body));
+		try
+		{
+			$tweets = Request::factory(Controller_Cron::$twitter_endpoint)
+				->execute();
+
+			if ($tweets->status === 200)
+			{
+				tweet::create($tweets->body);
+			}
+
+			var_dump($tweets);
+		}
+		catch (Request_Exception $e)
+		{
+			// Die gracefully
+		}
+		catch (Exception $e)
+		{
+			throw $e;
+		}
 	}
-
-
 }
-
-
