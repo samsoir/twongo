@@ -2,4 +2,10 @@
 
 class Controller_Cron extends Controller {
 	
+	public function action_update_twitter () {
+	
+		
+	
+	}
+	
 }
