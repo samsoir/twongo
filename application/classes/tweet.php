@@ -27,6 +27,11 @@ class tweet {
 		return $this->data->$key;
 	}
 	
+	public static function last_id () {
+		$db = mongoconnection::instance();
+		
+		return $db->tweets->findOne()->sort({id : 1});
+	}
 	
 	public static function latest ($limit = 5) {
 		$db = mongoconnection::instance();
